@@ -1,178 +1,139 @@
 <template>
-  <div id="app">
-    <div v-if="currentUser">
-      <header id="header" class="header fixed-top d-flex align-items-center">
-        <div class="d-flex align-items-center justify-content-between">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="" />
-            <span class="d-none d-lg-block">Kari</span>
-          </a>
-          <a href=""></a>
-          <a href=""></a>
-          <i class="bi bi-list toggle-sidebar-btn" @click="toggle"></i>
-        </div>
-        <!-- End Logo -->
+  <div>
+    !-- End Sidebar-->
 
-        <div class="search-bar">
-          <form
-            class="search-form d-flex align-items-center"
-            method="POST"
-            action="#"
-          >
-            <input
-              type="text"
-              name="query"
-              placeholder="Search"
-              title="Enter search keyword"
-            />
-            <button type="submit" title="Search">
-              <i class="bi bi-search"></i>
-            </button>
-          </form>
-        </div>
-        <!-- End Search Bar -->
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>User Details</h1>
+        <hr style="width: 50%; text-align: left; margin-left: 0" />
+        <h6 style="font-weight: bold">User Details</h6>
+        <p>Kindly fill the form to submit your personal details</p>
+      </div>
+      <!-- End Page Title -->
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">User Details</h5>
 
-        <nav class="header-nav ms-auto">
-          <ul class="d-flex align-items-center">
-            <li class="nav-item d-block d-lg-none">
-              <a class="nav-link nav-icon search-bar-toggle" href="#">
-                <i class="bi bi-search"></i>
-              </a>
-            </li>
-            <!-- End Search Icon-->
+                <!-- Vertical Form -->
+                <form class="row g-3" @submit.prevent="handleSubmit">
+                  <div class="col-6">
+                    <label for="inputNanme4" class="form-label"
+                      >Full Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputNanme4"
+                      v-model="fname"
+                      style="background-color: #e3e3e3"
+                      readonly
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="inputEmail4" class="form-label"
+                      >Email Address</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputEmail4"
+                      style="background-color: #e3e3e3"
+                      v-model="email"
+                      readonly
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="inputEmail4" class="form-label">Address </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputEmail4"
+                      v-model="formData.address"
+                    />
+                  </div>
 
-            <!-- End Notification Nav -->
-
-            <!-- End Messages Nav -->
-
-            <li class="nav-item dropdown pe-3">
-              <a
-                class="nav-link nav-profile d-flex align-items-center pe-0"
-                href="#"
-                data-bs-toggle="dropdown"
-              >
-                <i class="bi bi-person-circle"></i>
-                <span class="d-none d-md-block dropdown-toggle ps-2">{{
-                  currentUser.username
-                }}</span> </a
-              ><!-- End Profile Iamge Icon -->
-
-              <ul
-                class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-              >
-                <li class="dropdown-header">
-                  <h6>{{ currentUser.firstName }}</h6>
-                  <span>Web Designer</span>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-
-                <li>
-                  <router-link
-                    class="dropdown-item d-flex align-items-center"
-                    to="/details"
+                  <div class="col-12">
+                    <label for="phoneNumber" class="form-label"
+                      >Phone Number</label
+                    >
+                    <input
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      type="text"
+                      class="form-control"
+                      v-model="formData.phoneNumber"
+                    />
+                  </div>
+                  <div class="text-center"></div>
+                  <button
+                    class="btn btn-primary w-100 mt-3"
+                    @click="submitted = true"
                   >
-                    <i class="bi bi-person"></i>
-                    <span>My Profile</span>
-                  </router-link>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
+                    Submit
+                  </button>
+                </form>
+                <div v-if="saved">Saved</div>
+                <!-- Vertical Form -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
 
-                <li>
-                  <a
-                    class="dropdown-item d-flex align-items-center"
-                    href="#"
-                    @click="logout"
-                  >
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Sign Out</span>
-                  </a>
-                </li>
-              </ul>
-              <!-- End Profile Dropdown Items -->
-            </li>
-            <!-- End Profile Nav -->
-          </ul>
-        </nav>
-        <!-- End Icons Navigation -->
-      </header>
-      <aside
-        id="sidebar"
-        class="sidebar"
-        style="margin-bottom: 20px"
-        :hidden="hidden"
-      >
-        <ul class="sidebar-nav" id="sidebar-nav">
-          <li class="nav-item">
-            <a class="nav-link collapsed" href="index.html">
-              <i class="bi bi-grid"></i>
-              <span>Home</span>
-            </a>
-          </li>
-          <!-- End Dashboard Nav -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer"></footer>
+    <!-- End Footer -->
 
-          <li class="nav-item" style="margin-top: 20px">
-            <router-link class="nav-link collapsed" to="/wallet"
-              ><i class="bi bi-wallet-fill"></i><span>Wallet</span></router-link
-            >
-          </li>
-          <!-- End Profile Page Nav -->
-
-          <li class="nav-item" style="margin-top: 20px">
-            <router-link class="nav-link collapsed" to="/shipments"
-              ><i class="bi bi-box-seam-fill"></i>
-              <span>Shipments</span></router-link
-            >
-          </li>
-
-          <!-- End F.A.Q Page Nav -->
-
-          <li class="nav-item" style="margin-top: 20px">
-            <router-link class="nav-link collapsed" to="/order"
-              ><i class="bi bi-box2-fill"></i> <span>Orders</span></router-link
-            >
-          </li>
-          <!-- End Contact Page Nav -->
-
-          <!-- End Error 404 Page Nav -->
-          <li class="nav-item" style="margin-top: 20px">
-            <router-link class="nav-link collapsed" to="/contact"
-              ><i class="bi bi-patch-question-fill"></i>
-              <span>Contact Us</span></router-link
-            >
-          </li>
-          <!-- End Blank Page Nav -->
-        </ul>
-      </aside>
-      <!-- End Sidebar-->
-    </div>
-
-    <router-view />
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
   </div>
 </template>
 
 <script>
 import vuex from "vuex";
+import packageService from "../services/packageService";
+import Cust from "../models/custdetails.js";
 export default {
+  name: "Details",
   data() {
     return {
-      hidden: false,
+      fname: "",
+      email: "",
+      formData: new Cust(),
+      saved: false,
     };
   },
   computed: {
-    ...vuex.mapState(["currentUser"]),
+    ...vuex.mapGetters(["currentUser"]),
+  },
+  mounted() {
+    this.fname = this.currentUser.firstName;
+    this.email = this.currentUser.username;
   },
   methods: {
-    ...vuex.mapActions(["clearUser"]),
-    logout() {
-      this.clearUser();
-      this.$router.push("/login");
-    },
-    toggle() {
-      this.hidden = !this.hidden;
+    handleSubmit() {
+      this.formData.email = this.email;
+      console.log(this.formData);
+      packageService
+        .submitDetails(this.formData)
+        .then((response) => {
+          console.log(response.data);
+          this.updateUser(response.data);
+          this.$router.push("/details");
+        })
+        .catch((err) => {
+          console.log(err);
+          this.errorMessages = "Unexpected error";
+        });
+      this.saved = true;
     },
   },
 };
@@ -800,7 +761,7 @@ h6 {
   background-color: #fff;
 }
 
-@media (max-width: 250px) {
+@media (max-width: 1199px) {
   .sidebar {
     left: -300px;
   }

@@ -7,6 +7,7 @@ import Wallet from "../views/Wallet.vue";
 import Shipments from "../views/Shipments.vue";
 import Order from "../views/Order.vue";
 import Contact from "../views/Contacts.vue";
+import Details from "../views/Details.vue";
 import NotFound from "../views/NotFound.vue";
 import Unauthorized from "../views/Unauthorized.vue";
 import Store from "../store";
@@ -58,6 +59,12 @@ const routes = [
     path: "/contact",
     name: "contact",
     component: Contact,
+    meta: { auth: true },
+  },
+  {
+    path: "/details",
+    name: "details",
+    component: Details,
     meta: { auth: true },
   },
   {

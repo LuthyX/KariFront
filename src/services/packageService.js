@@ -7,6 +7,7 @@ const WALLET_API_URL = BASE_API_URL + "/api/wallet";
 const PAY_PACKAGE_API_URL = BASE_API_URL + "/api/package/pay";
 const GET_HISTORY = BASE_API_URL + "/api/history";
 const CONTACT_US = BASE_API_URL + "/api/contact";
+const SUBMIT_USER_DETAILS = BASE_API_URL + "/api/customer/details";
 
 class packageService {
   getPackages(id) {
@@ -23,6 +24,9 @@ class packageService {
   }
   postContact(contact) {
     return axios.post(CONTACT_US, contact, { headers: authHeader() });
+  }
+  submitDetails(detail) {
+    return axios.post(SUBMIT_USER_DETAILS, detail, { headers: authHeader() });
   }
 }
 
