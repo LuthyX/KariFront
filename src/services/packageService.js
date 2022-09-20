@@ -8,6 +8,8 @@ const PAY_PACKAGE_API_URL = BASE_API_URL + "/api/package/pay";
 const GET_HISTORY = BASE_API_URL + "/api/history";
 const CONTACT_US = BASE_API_URL + "/api/contact";
 const SUBMIT_USER_DETAILS = BASE_API_URL + "/api/customer/details";
+const RESET_EMAIL = BASE_API_URL + "/api/emailreset";
+const FORM_RESET = BASE_API_URL + "/api/passwordreset";
 
 class packageService {
   getPackages(id) {
@@ -27,6 +29,12 @@ class packageService {
   }
   submitDetails(detail) {
     return axios.post(SUBMIT_USER_DETAILS, detail, { headers: authHeader() });
+  }
+  emailReset(email) {
+    return axios.post(RESET_EMAIL, email);
+  }
+  formReset(form) {
+    return axios.post(FORM_RESET, form);
   }
 }
 

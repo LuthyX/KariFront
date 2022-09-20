@@ -8,6 +8,8 @@ import Shipments from "../views/Shipments.vue";
 import Order from "../views/Order.vue";
 import Contact from "../views/Contacts.vue";
 import Details from "../views/Details.vue";
+import FormReset from "../views/FormReset.vue";
+import EmailReset from "../views/EmailReset.vue";
 import NotFound from "../views/NotFound.vue";
 import Unauthorized from "../views/Unauthorized.vue";
 import Store from "../store";
@@ -17,7 +19,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: Home,
+    component: Login,
   },
   {
     path: "/login",
@@ -66,6 +68,19 @@ const routes = [
     name: "details",
     component: Details,
     meta: { auth: true },
+  },
+  {
+    path: "/emailreset",
+    name: "EmailReset",
+    component: EmailReset,
+    meta: { auth: false },
+  },
+  {
+    path: "/formreset/:token",
+    name: "FormReset",
+    component: FormReset,
+    props: true,
+    meta: { auth: false },
   },
   {
     path: "/404",

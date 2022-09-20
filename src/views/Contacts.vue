@@ -128,7 +128,6 @@ export default {
         .postContact(this.formData)
         .then((response) => {
           console.log(response.data);
-          this.updateUser(response.data);
           this.$router.push("/contact");
         })
         .catch((err) => {
