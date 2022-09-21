@@ -96,6 +96,9 @@
             <router-link to="/login" class="signup-image-link"
               >I have an account..Login</router-link
             >
+            <router-link to="/emailreset" class="signup-image-link"
+              >Forgot Password?</router-link
+            >
           </div>
         </div>
       </div>

@@ -73,6 +73,9 @@
             <router-link to="/register" class="signup-image-link"
               >Create an Account</router-link
             >
+            <router-link to="/emailreset" class="signup-image-link"
+              >Forgot Password?</router-link
+            >
           </div>
         </div>
       </div>
